@@ -1,1 +1,12 @@
-<resources></resources>
+<resources>
+    <string name="move_remaining">Il vous reste %1$d coup(s) !</string>
+    <string name="game_loose">Vous avez perdu cette partie.\n Le mot était : %1$s</string>
+    <string name="game_win">Vous avez gagné cette partie.</string>
+    <string name="button_game_new">Nouvelle partie</string>
+    <string name="button_try_word">Essayer ce mot</string>
+    <string name="color_code">Code couleur:</string>
+    <string name="character_correct">La lettre est bien placée</string>
+    <string name="character_wrong_position">La lettre est présente mais mal placée</string>
+    <string name="character_wrong">La lettre n\'est pas présente dans le mot</string>
+    <string name="character_none">La case est vide</string>
+</resources>
