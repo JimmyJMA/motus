@@ -9,6 +9,7 @@ import javax.inject.Inject
 
 class MotusRepositoryImpl @Inject constructor(
     private val motusRemoteDataSource: MotusRemoteDataSource,
+    private val motusLocalDataSource: MotusLocalDataSource,
     private val characterMapper: CharacterMapper,
 ) : MotusRepository {
 
@@ -18,7 +19,12 @@ class MotusRepositoryImpl @Inject constructor(
                 characterMapper.toCharacterMapper(State.Success(response.data))
             }
             is State.Failure -> {
-                State.Failure("Error network")
+                when (val localResponse = motusLocalDataSource.bindsMotusLocalDataSource().toState()) {
+                    is State.Success -> {
+                        characterMapper.toCharacterMapper(State.Success(localResponse.data))
+                    }
+                    is State.Failure -> State.Failure(localResponse.errorMsg)
+                }
             }
         }
     }

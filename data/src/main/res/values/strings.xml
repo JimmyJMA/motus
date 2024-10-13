@@ -1,0 +1,4 @@
+<resources>
+    <string name="error_local_empty_data">Code erreur 1 - Une erreur est survenue</string>
+    <string name="error_local_file_not_found">Code erreur 2 - Une erreur est survenue</string>
+</resources>

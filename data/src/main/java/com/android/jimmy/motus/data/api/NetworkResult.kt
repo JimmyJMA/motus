@@ -9,7 +9,7 @@ sealed class NetworkResult<T : Any> {
 }
 
 fun <T : Any> NetworkResult<T>.toState(): State<T> {
-    val errorFailure3 = "Code erreur - Une erreur est survenue"
+    val errorFailure3 = "Code erreur 3 - Une erreur est survenue"
     return when (this) {
         is NetworkResult.onSuccess -> State.Success(this.data)
         is NetworkResult.onError -> State.Failure(this.errorMsg, this.code)
