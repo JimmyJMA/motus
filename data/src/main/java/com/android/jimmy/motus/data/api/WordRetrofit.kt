@@ -12,7 +12,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 @InstallIn(SingletonComponent::class)
 object WordRetrofit {
 
-    private const val BASE_URL = "https://just-paste.com/"
+    private const val BASE_URL = "https://gist.githubusercontent.com/"
 
     @Provides
     fun provideBaseUrl(): String = BASE_URL
