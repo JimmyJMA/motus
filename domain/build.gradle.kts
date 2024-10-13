@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt)
     id("kotlin-kapt")
+    alias(libs.plugins.jlleitschuh.ktlint)
 }
 
 android {
@@ -25,6 +26,14 @@ android {
     kotlinOptions {
         jvmTarget = "21"
     }
+}
+
+ktlint {
+    ignoreFailures.set(true)
+    verbose.set(true)
+    android.set(true)
+    outputToConsole.set(true)
+    version.set(libs.versions.ktlint)
 }
 
 dependencies {

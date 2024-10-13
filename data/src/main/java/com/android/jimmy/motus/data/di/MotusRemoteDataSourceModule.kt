@@ -11,5 +11,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 internal interface MotusRemoteDataSourceModule {
     @Binds
-    fun bindsMotusRemoteDataSource(motusRemoteDataSourceImpl: MotusRemoteDataSourceImpl): MotusRemoteDataSource
+    fun bindsMotusRemoteDataSource(
+        motusRemoteDataSourceImpl: MotusRemoteDataSourceImpl
+    ): MotusRemoteDataSource
 }

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger.hilt)
     id("kotlin-kapt")
+    alias(libs.plugins.jlleitschuh.ktlint)
 }
 
 android {
@@ -37,6 +38,14 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+ktlint {
+    ignoreFailures.set(true)
+    verbose.set(true)
+    android.set(true)
+    outputToConsole.set(true)
+    version.set(libs.versions.ktlint)
 }
 
 dependencies {

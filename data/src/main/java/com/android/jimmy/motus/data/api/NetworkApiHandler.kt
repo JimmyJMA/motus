@@ -13,11 +13,14 @@ interface NetworkApiHandler {
             if (response.isSuccessful && body != null) {
                 NetworkResult.onSuccess(response.code(), body)
             } else {
-                NetworkResult.onError(code = response.code(), errorMsg = response.errorBody().toString())
+                NetworkResult.onError(
+                    code = response.code(),
+                    errorMsg = response.errorBody().toString()
+                )
             }
-        } catch (e:HttpException){
-            NetworkResult.onError(e.code(),e.message())
-        } catch (e:Throwable){
+        } catch (e: HttpException) {
+            NetworkResult.onError(e.code(), e.message())
+        } catch (e: Throwable) {
             NetworkResult.Exception(e)
         }
     }

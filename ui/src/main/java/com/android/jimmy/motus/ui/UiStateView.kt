@@ -1,6 +1,5 @@
 package com.android.jimmy.motus.ui
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,7 +21,7 @@ import com.android.jimmy.motus.ui.model.UiState
 @Composable
 fun UIStateView(
     state: State<UiState<List<Character>>>,
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     when (val value = state.value) {
         is UiState.Failure -> UIFailure(value.errorMsg)
@@ -39,7 +38,8 @@ private fun UILoading() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp), contentAlignment = Alignment.Center
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
             modifier = Modifier.align(Alignment.Center),
@@ -54,7 +54,8 @@ private fun UIFailure(errorMsg: String = "") {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp), contentAlignment = Alignment.Center
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier
@@ -67,7 +68,7 @@ private fun UIFailure(errorMsg: String = "") {
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.secondary,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Center
             )
         }
     }

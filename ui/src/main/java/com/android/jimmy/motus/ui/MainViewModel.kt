@@ -10,18 +10,18 @@ import com.android.jimmy.motus.ui.mapper.RandomWordUiMapper
 import com.android.jimmy.motus.ui.model.UiCurrentGameState
 import com.android.jimmy.motus.ui.model.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getRandomWordUseCase: GetRandomWordUseCase,
     private val findWordUseCase: FindWordUseCase,
     private val randomWordUiMapper: RandomWordUiMapper,
-    @ViewModelCoroutineContext private val dispatcher: CoroutineContext,
+    @ViewModelCoroutineContext private val dispatcher: CoroutineContext
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<UiState<List<Character>>>(UiState.Loading())
@@ -49,7 +49,9 @@ class MainViewModel @Inject constructor(
 
     fun findRandomWord() {
         viewModelScope.launch(dispatcher) {
-            val randomWordUiState = randomWordUiMapper.randomWordStateToUiState(getRandomWordUseCase.invoke())
+            val randomWordUiState = randomWordUiMapper.randomWordStateToUiState(
+                getRandomWordUseCase.invoke()
+            )
             _state.value = randomWordUiState
             if (randomWordUiState is UiState.Success) {
                 _currentWord.value = randomWordUiState.data
@@ -74,7 +76,10 @@ class MainViewModel @Inject constructor(
                 } else {
                     _moveRemaining.value--
                 }
-                val wordTyped = getRandomWordUseCase.validate(current, wordTypedStr.parseStringToLetter())
+                val wordTyped = getRandomWordUseCase.validate(
+                    current,
+                    wordTypedStr.parseStringToLetter()
+                )
 
                 val currentWordTmp = _listWordTried.value.toMutableList()
 
@@ -102,5 +107,4 @@ class MainViewModel @Inject constructor(
     companion object {
         private const val NB_MAX_MOVE = 7
     }
-
 }

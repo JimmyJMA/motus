@@ -4,5 +4,5 @@ enum class UiCurrentGameState {
     STARTED, // Current game is started
     WIN, // Win the current game
     LOOSE, // Loose the current game
-    NONE, // Current game is stopped or doesn't exist
+    NONE // Current game is stopped or doesn't exist
 }

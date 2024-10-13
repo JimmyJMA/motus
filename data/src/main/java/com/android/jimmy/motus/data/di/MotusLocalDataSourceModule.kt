@@ -11,5 +11,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 internal interface MotusLocalDataSourceModule {
     @Binds
-    fun bindsMotusLocalDataSource(motusLocalDataSourceImpl: MotusLocalDataSourceImpl): MotusLocalDataSource
+    fun bindsMotusLocalDataSource(
+        motusLocalDataSourceImpl: MotusLocalDataSourceImpl
+    ): MotusLocalDataSource
 }

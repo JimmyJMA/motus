@@ -3,9 +3,9 @@ package com.android.jimmy.motus.data.api
 import com.android.jimmy.motus.domain.State
 
 sealed class NetworkResult<T : Any> {
-    class onSuccess<T: Any>(val code: Int,val data: T) : NetworkResult<T>()
-    class onError<T: Any>(val code: Int, val errorMsg: String) : NetworkResult<T>()
-    class Exception<T: Any>(val e: Throwable) : NetworkResult<T>()
+    class onSuccess<T : Any>(val code: Int, val data: T) : NetworkResult<T>()
+    class onError<T : Any>(val code: Int, val errorMsg: String) : NetworkResult<T>()
+    class Exception<T : Any>(val e: Throwable) : NetworkResult<T>()
 }
 
 fun <T : Any> NetworkResult<T>.toState(): State<T> {

@@ -4,9 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -26,6 +26,7 @@ object WordRetrofit {
 
     @Provides
     @Singleton
-    internal fun provideApiService(retrofit: Retrofit): MotusService = retrofit.create(MotusService::class.java)
-
+    internal fun provideApiService(retrofit: Retrofit): MotusService = retrofit.create(
+        MotusService::class.java
+    )
 }

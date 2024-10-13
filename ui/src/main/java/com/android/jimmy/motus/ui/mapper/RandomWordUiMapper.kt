@@ -7,7 +7,9 @@ import javax.inject.Inject
 
 class RandomWordUiMapper @Inject constructor() {
 
-    fun randomWordStateToUiState(randomWordState: State<List<Character>>): UiState<List<Character>> {
+    fun randomWordStateToUiState(
+        randomWordState: State<List<Character>>
+    ): UiState<List<Character>> {
         return when (randomWordState) {
             is State.Success -> {
                 if (randomWordState.data.isNotEmpty()) {

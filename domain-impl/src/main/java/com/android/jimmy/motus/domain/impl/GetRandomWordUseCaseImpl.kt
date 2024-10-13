@@ -7,7 +7,7 @@ import com.android.jimmy.motus.domain.repository.MotusRepository
 import com.android.jimmy.motus.domain.usecase.GetRandomWordUseCase
 import javax.inject.Inject
 
-class GetRandomWordUseCaseImpl @Inject constructor (private val motusRepository: MotusRepository) :
+class GetRandomWordUseCaseImpl @Inject constructor(private val motusRepository: MotusRepository) :
     GetRandomWordUseCase {
 
     override suspend fun invoke(): State<List<Character>> {

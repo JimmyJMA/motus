@@ -12,9 +12,11 @@ class CharacterMapper @Inject constructor() {
         val randomWord = getRandomWord(state.data.split("\n"))
         val listChars = randomWord?.trim()?.toList()
         return if (listChars?.isNotEmpty() == true) {
-            State.Success(listChars.map {
-                Character(it, Status.NONE)
-            })
+            State.Success(
+                listChars.map {
+                    Character(it, Status.NONE)
+                }
+            )
         } else {
             State.Failure(ERROR_FAILURE_4)
         }

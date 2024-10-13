@@ -10,7 +10,7 @@ import javax.inject.Inject
 class MotusRepositoryImpl @Inject constructor(
     private val motusRemoteDataSource: MotusRemoteDataSource,
     private val motusLocalDataSource: MotusLocalDataSource,
-    private val characterMapper: CharacterMapper,
+    private val characterMapper: CharacterMapper
 ) : MotusRepository {
 
     override suspend fun getWord(): State<List<Character>> {
@@ -19,7 +19,9 @@ class MotusRepositoryImpl @Inject constructor(
                 characterMapper.toCharacterMapper(State.Success(response.data))
             }
             is State.Failure -> {
-                when (val localResponse = motusLocalDataSource.bindsMotusLocalDataSource().toState()) {
+                when (
+                    val localResponse = motusLocalDataSource.bindsMotusLocalDataSource().toState()
+                ) {
                     is State.Success -> {
                         characterMapper.toCharacterMapper(State.Success(localResponse.data))
                     }
@@ -35,7 +37,9 @@ class MotusRepositoryImpl @Inject constructor(
                 response.data.split("\n").contains(word)
             }
             is State.Failure -> {
-                when (val localResponse = motusLocalDataSource.bindsMotusLocalDataSource().toState()) {
+                when (
+                    val localResponse = motusLocalDataSource.bindsMotusLocalDataSource().toState()
+                ) {
                     is State.Success -> {
                         localResponse.data.split("\n").contains(word)
                     }
@@ -44,5 +48,4 @@ class MotusRepositoryImpl @Inject constructor(
             }
         }
     }
-
 }

@@ -22,14 +22,17 @@ fun SplashScreen(
     modifier: Modifier = Modifier,
     valid: Boolean?,
     onSplashEndedValid: () -> Unit,
-    onSplashEndedInvalid: () -> Unit,
+    onSplashEndedInvalid: () -> Unit
 ) {
     val currentValid = rememberUpdatedState(newValue = valid)
 
     LaunchedEffect(key1 = null) {
         delay(splashDelay)
-        if (currentValid.value == true) onSplashEndedValid()
-        else onSplashEndedInvalid()
+        if (currentValid.value == true) {
+            onSplashEndedValid()
+        } else {
+            onSplashEndedInvalid()
+        }
     }
     Column(
         modifier = modifier.fillMaxSize(),
@@ -39,7 +42,8 @@ fun SplashScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp), contentAlignment = Alignment.Center
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.Center),

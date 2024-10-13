@@ -47,7 +47,9 @@ import java.util.regex.Pattern
 fun MainScreen(context: Context, mainViewModel: MainViewModel) {
     val state = remember { mainViewModel.state }.collectAsStateWithLifecycle()
     val listWordTried = remember { mainViewModel.listWordTried }.collectAsStateWithLifecycle()
-    val uiCurrentGameState = remember { mainViewModel.uiCurrentGameState }.collectAsStateWithLifecycle()
+    val uiCurrentGameState = remember {
+        mainViewModel.uiCurrentGameState
+    }.collectAsStateWithLifecycle()
     val currentWord = remember { mainViewModel.currentWordStr }.collectAsStateWithLifecycle()
     val moveRemaining = remember { mainViewModel.moveRemaining }.collectAsStateWithLifecycle()
     val freeMusic: MediaPlayer = remember { MediaPlayer.create(context, R.raw.free) }
@@ -81,13 +83,12 @@ fun MainScreen(context: Context, mainViewModel: MainViewModel) {
                 }
             }
 
-
             UiGameStateView(
                 uiCurrentGameState = uiCurrentGameState.value,
                 newGame = { mainViewModel.newGame() },
                 winString = context.getString(R.string.game_win),
                 looseString = context.getString(R.string.game_loose, currentWord.value),
-                newGameString = context.getString(R.string.button_game_new),
+                newGameString = context.getString(R.string.button_game_new)
             )
 
             UiInfoView(
@@ -108,7 +109,7 @@ fun UiGameStateView(
     newGame: () -> Unit,
     winString: String,
     looseString: String,
-    newGameString: String,
+    newGameString: String
 ) {
     Column(
         modifier = Modifier
@@ -157,7 +158,10 @@ fun UiTextView(modifier: Modifier, buttonTryWordString: String, onClick: (String
             },
             modifier = Modifier.width(200.dp),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, capitalization = KeyboardCapitalization.Characters),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                capitalization = KeyboardCapitalization.Characters
+            )
         )
         Button(
             onClick = {
@@ -184,16 +188,22 @@ fun UiCharacter(character: Character, position: Int = 0) {
             .background(color = getColorcharacter(character.status))
             .border(width = 1.dp, color = Color.White)
     ) {
-
         if (character.status != Status.NONE || position == 0) {
             Text(
                 text = character.char.toString(),
                 modifier = Modifier.align(alignment = Alignment.Center),
                 style = TextStyle(
                     fontSize = 24.sp,
-                    color = Color.Black,
+                    color = Color.Black
                 ),
-                color = if (character.status.equals(Status.CORRECT) || character.status.equals(Status.WRONG)) Color.White else Color.Black
+                color = if (character.status.equals(Status.CORRECT) || character.status.equals(
+                        Status.WRONG
+                    )
+                ) {
+                    Color.White
+                } else {
+                    Color.Black
+                }
             )
         }
     }
@@ -216,7 +226,7 @@ fun UiInfoView(
     characterCorrectString: String,
     characterWrongPositionString: String,
     characterWrongString: String,
-    characterNoneString: String,
+    characterNoneString: String
 ) {
     var musicStarted: Boolean = remember { false }
     Column(modifier = modifier.padding(top = 24.dp)) {
@@ -229,7 +239,7 @@ fun UiInfoView(
 
             )
         }
-        Row (
+        Row(
             modifier = Modifier.clickable(
                 onClick = {
                     mediaPlayer?.let {
@@ -250,7 +260,7 @@ fun UiInfoView(
                     .align(alignment = Alignment.CenterVertically)
             )
         }
-        Row (
+        Row(
             modifier = Modifier.clickable(
                 onClick = {
                     mediaPlayer?.let {
@@ -271,7 +281,7 @@ fun UiInfoView(
                     .align(alignment = Alignment.CenterVertically)
             )
         }
-        Row (
+        Row(
             modifier = Modifier.clickable(
                 onClick = {
                     mediaPlayer?.let {
@@ -292,7 +302,7 @@ fun UiInfoView(
                     .align(alignment = Alignment.CenterVertically)
             )
         }
-        Row (
+        Row(
             modifier = Modifier.clickable(
                 onClick = {
                     mediaPlayer?.let {
@@ -314,7 +324,6 @@ fun UiInfoView(
             )
         }
     }
-
 }
 
 @Composable
@@ -323,7 +332,7 @@ fun UiInfoGameStateView(
     textButton: String,
     color: Color,
     modifier: Modifier,
-    reset: () -> Unit,
+    reset: () -> Unit
 ) {
     Column(modifier = modifier) {
         Text(
@@ -352,7 +361,6 @@ fun getColorcharacter(status: Status) = when (status) {
     Status.NONE -> Color(0xFFCCCCCC)
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun UiCharacterPreview() {
@@ -373,7 +381,14 @@ fun UiCharactersPreview() {
         val character5 = Character('Y', Status.CORRECT)
         val character6 = Character('Y', Status.NONE)
 
-        val characters = listOf(character1, character2, character3, character4, character5, character6)
+        val characters = listOf(
+            character1,
+            character2,
+            character3,
+            character4,
+            character5,
+            character6
+        )
         UiCharacters(characters)
     }
 }
@@ -388,7 +403,7 @@ fun UiInfoViewPreview() {
             characterCorrectString = "Correct",
             characterWrongPositionString = "Wrong Position",
             characterWrongString = "Wrong",
-            characterNoneString = "None",
+            characterNoneString = "None"
         )
     }
 }
