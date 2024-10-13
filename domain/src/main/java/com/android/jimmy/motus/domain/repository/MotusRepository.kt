@@ -5,4 +5,5 @@ import com.android.jimmy.motus.domain.model.Character
 
 interface MotusRepository {
     suspend fun getWord(): State<List<Character>>
+    suspend fun findWord(word: String): Boolean
 }

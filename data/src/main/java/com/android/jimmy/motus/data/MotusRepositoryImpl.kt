@@ -29,4 +29,20 @@ class MotusRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun findWord(word: String): Boolean {
+        return when (val response = motusRemoteDataSource.bindsMotusRemoteDataSource().toState()) {
+            is State.Success -> {
+                response.data.split("\n").contains(word)
+            }
+            is State.Failure -> {
+                when (val localResponse = motusLocalDataSource.bindsMotusLocalDataSource().toState()) {
+                    is State.Success -> {
+                        localResponse.data.split("\n").contains(word)
+                    }
+                    is State.Failure -> false
+                }
+            }
+        }
+    }
+
 }
