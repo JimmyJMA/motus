@@ -19,6 +19,16 @@ A chaque tentative les cases contenant les lettres seront colorées. Les lettres
   <img width="24%" height="75%" src="screenshots/screenshots_game4.png" />
 </p>
 
+# Difficultés rencontrées
+
+L'api https://just-paste.com/raw/iys4katchh est hors-service depuis dimanche après-midi, j'ai donc décidé de modifier l'api initial vers un gist github https://gist.githubusercontent.com/JimmyJMA/2fcab8bf05fb4542ad35f13041a95bd5/raw/ac758258acd4244dee75c88162b6f23a6c3534ef/gistfile1.txt
+
+Cette difficulté m'a amené a me questionner, j'ai donc décidé d'intégré en bonus un mode offline pour permettre au joueur de jouer hors-ligne.
+
+Il existe deux versions d'application, la version 1.0.0 utilise l'ancienne API tandis que la version 1.0.1 utilise la nouvelle API.
+
+Le mode offline fonctionne sur les deux API(s)
+
 # Architecture
 
 Une architecture clean a été mise en place. Il s’agit d’une méthode ou philosophie de conception logicielle qui permet de séparer l’application en différentes couches. Elle se distingue par une organisation du code en différentes couches, chaque couche aura ses responsabilités de façon indépendante.
