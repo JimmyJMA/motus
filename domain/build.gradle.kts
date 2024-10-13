@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt)
     id("kotlin-kapt")
-    alias(libs.plugins.jlleitschuh.ktlint)
 }
 
 android {

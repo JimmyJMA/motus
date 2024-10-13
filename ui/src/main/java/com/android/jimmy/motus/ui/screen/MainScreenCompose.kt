@@ -44,7 +44,7 @@ import com.android.jimmy.motus.ui.theme.MotusTheme
 import java.util.regex.Pattern
 
 @Composable
-fun MainScreen(context: Context, mainViewModel: MainViewModel) {
+fun MainScreenCompose(context: Context, mainViewModel: MainViewModel) {
     val state = remember { mainViewModel.state }.collectAsStateWithLifecycle()
     val listWordTried = remember { mainViewModel.listWordTried }.collectAsStateWithLifecycle()
     val uiCurrentGameState = remember {

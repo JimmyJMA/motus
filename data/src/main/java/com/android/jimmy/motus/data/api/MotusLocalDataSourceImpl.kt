@@ -14,6 +14,7 @@ internal class MotusLocalDataSourceImpl @Inject constructor(
     @IoDispatcher private val coroutineContext: CoroutineContext
 ) : MotusLocalDataSource, NetworkApiHandler {
 
+    @Suppress("SwallowedException")
     override suspend fun bindsMotusLocalDataSource(): NetworkResult<String> {
         return withContext(coroutineContext) {
             try {
@@ -22,13 +23,24 @@ internal class MotusLocalDataSourceImpl @Inject constructor(
                         it.readText()
                     }
                 if (data.isNotEmpty()) {
-                    NetworkResult.onSuccess(200, data)
+                    NetworkResult.OnSuccess(ERROR_200, data)
                 } else {
-                    NetworkResult.onError(200, context.getString(R.string.error_local_empty_data))
+                    NetworkResult.OnError(
+                        ERROR_200,
+                        context.getString(R.string.error_local_empty_data)
+                    )
                 }
             } catch (exception: Exception) {
-                NetworkResult.onError(404, context.getString(R.string.error_local_file_not_found))
+                NetworkResult.OnError(
+                    ERROR_404,
+                    context.getString(R.string.error_local_file_not_found)
+                )
             }
         }
+    }
+
+    companion object {
+        private const val ERROR_200 = 200
+        private const val ERROR_404 = 404
     }
 }

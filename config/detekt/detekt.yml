@@ -1,0 +1,36 @@
+complexity:
+  NestedBlockDepth:
+    active: true
+    threshold: 5
+  TooManyFunctions:
+    ignorePrivate: true
+    ignoreOverridden: true
+    excludes: [ '**/*Compose.kt' ]
+  ComplexMethod:
+    ignoreSimpleWhenEntries: true
+    excludes: [ '**/*Compose.kt' ]
+  LargeClass:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/*.Test.kt' ]
+  LongMethod:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/*.Test.kt', '**/*Compose.kt' ]
+  LongParameterList:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+
+style:
+  MagicNumber:
+    excludes: [ '**/*Compose.kt', '**/*Color.kt', '**/test/**', '**/androidTest/**', '**/*.Test.kt' ]
+  ForbiddenComment:
+    active: false
+  MaxLineLength:
+    excludes: [ '**/test/**', '**/androidTest/**', '**/*.Test.kt' ]
+    excludeCommentStatements: true
+  UnusedPrivateMember:
+    ignoreAnnotated: [ 'Preview', 'JvmStatic', 'MobilePreviews', 'PhonePortraitPreview', 'PhoneLandscapePreview', 'TabletPortraitPreview', 'TabletLandscapePreview', 'TvPreview' ]

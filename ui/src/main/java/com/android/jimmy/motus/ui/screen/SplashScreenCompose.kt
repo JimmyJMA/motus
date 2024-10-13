@@ -15,11 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
-private const val splashDelay: Long = 3000
-
 @Composable
 fun SplashScreen(
     modifier: Modifier = Modifier,
+    splashDelay: Long,
     valid: Boolean?,
     onSplashEndedValid: () -> Unit,
     onSplashEndedInvalid: () -> Unit

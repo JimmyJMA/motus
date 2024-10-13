@@ -11,15 +11,15 @@ interface NetworkApiHandler {
             val response = execute()
             val body = response.body()
             if (response.isSuccessful && body != null) {
-                NetworkResult.onSuccess(response.code(), body)
+                NetworkResult.OnSuccess(response.code(), body)
             } else {
-                NetworkResult.onError(
+                NetworkResult.OnError(
                     code = response.code(),
                     errorMsg = response.errorBody().toString()
                 )
             }
         } catch (e: HttpException) {
-            NetworkResult.onError(e.code(), e.message())
+            NetworkResult.OnError(e.code(), e.message())
         } catch (e: Throwable) {
             NetworkResult.Exception(e)
         }

@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.android.jimmy.motus.ui.model.UiState
-import com.android.jimmy.motus.ui.screen.MainScreen
+import com.android.jimmy.motus.ui.screen.MainScreenCompose
 import com.android.jimmy.motus.ui.screen.SplashScreen
 import com.android.jimmy.motus.ui.theme.MotusTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "splash") {
                     composable(route = "splash") {
                         SplashScreen(
+                            splashDelay = splashDelay,
                             valid = when (viewModel.state.collectAsStateWithLifecycle().value) {
                                 is UiState.Success -> true
                                 is UiState.Failure, is UiState.Loading -> false
@@ -51,10 +52,14 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     composable(route = "main") {
-                        MainScreen(context, viewModel)
+                        MainScreenCompose(context, viewModel)
                     }
                 }
             }
         }
+    }
+
+    companion object {
+        private const val splashDelay: Long = 3000
     }
 }

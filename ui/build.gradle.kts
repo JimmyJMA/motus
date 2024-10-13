@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger.hilt)
     id("kotlin-kapt")
-    alias(libs.plugins.jlleitschuh.ktlint)
 }
 
 android {
