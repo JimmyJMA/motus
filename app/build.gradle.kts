@@ -23,9 +23,27 @@ android {
         }
     }
 
+    signingConfigs {
+        create("motus") {
+            storeFile = file("${project.rootDir}/motus.keystore")
+            storePassword = "motus123456"
+            keyAlias = "key0"
+            keyPassword = "motus123456"
+        }
+    }
+
     buildTypes {
-        release {
+        val motusSigning = signingConfigs.getByName("motus")
+        debug {
+            isDebuggable = true
             isMinifyEnabled = false
+            enableUnitTestCoverage = true
+            applicationIdSuffix = ".debug"
+        }
+        release {
+            signingConfig = motusSigning
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
