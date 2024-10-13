@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Motus"
 include(":app")
- 
+include(":data")
+include(":domain")
+include(":domain-impl")
+include(":ui")
